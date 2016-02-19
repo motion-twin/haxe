@@ -23,7 +23,7 @@ package sys.net;
 import java.net.InetSocketAddress;
 
 @:coreApi
-class Socket {
+class Socket implements sys.net.ISocket {
 
 	public var input(default,null) : haxe.io.Input;
 	public var output(default,null) : haxe.io.Output;

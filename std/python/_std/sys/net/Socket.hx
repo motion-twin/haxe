@@ -110,7 +110,7 @@ private class SocketOutput extends haxe.io.Output {
 /**
     A TCP socket class : allow you to both connect to a given server and exchange messages or start your own server and wait for connections.
 **/
-@:coreApi class Socket {
+@:coreApi class Socket implements sys.net.ISocket {
 
 
     var __s:PSocket;

@@ -24,7 +24,7 @@ package sys.net;
 import sys.io.File;
 
 @:coreApi
-class Socket {
+class Socket implements sys.net.ISocket {
 
 	private var __s : FileHandle;
 	private var protocol : String;
