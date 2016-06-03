@@ -1772,17 +1772,6 @@ let generate_construct ctx fdata c =
 		v,c
 	) fdata.tf_args in
 	let f = begin_fun ctx cargs fdata.tf_type [ethis;fdata.tf_expr] false fdata.tf_expr.epos in
-	(* if skip_constructor, then returns immediatly *)
-	if ctx.need_ctor_skip then (match c.cl_kind with
-	| KGenericInstance _ -> ()
-	| _ when not (Codegen.constructor_side_effects fdata.tf_expr) -> ()
-	| _ ->
-		let id = ident "skip_constructor" in
-		getvar ctx (VGlobal (type_path ctx (["flash"],"Boot")));
-		getvar ctx (VId id);
-		let j = jump ctx J3False in
-		write ctx HRetVoid;
-		j());
 	(* --- *)
 	PMap.iter (fun _ f ->
 		match f.cf_expr, f.cf_kind with
@@ -1797,6 +1786,17 @@ let generate_construct ctx fdata c =
 			j();
 		| _ -> ()
 	) c.cl_fields;
+	(* if skip_constructor, then returns immediatly *)
+	if ctx.need_ctor_skip then (match c.cl_kind with
+	| KGenericInstance _ -> ()
+	| _ when not (Codegen.constructor_side_effects fdata.tf_expr) -> ()
+	| _ ->
+		let id = ident "skip_constructor" in
+		getvar ctx (VGlobal (type_path ctx (["flash"],"Boot")));
+		getvar ctx (VId id);
+		let j = jump ctx J3False in
+		write ctx HRetVoid;
+		j());
 	gen_expr ctx false fdata.tf_expr;
 	debug_infos ctx ~is_min:false fdata.tf_expr.epos;
 	write ctx HRetVoid;
