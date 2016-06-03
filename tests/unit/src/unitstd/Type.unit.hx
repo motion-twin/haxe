@@ -72,6 +72,14 @@ var c = Type.createEmptyInstance(ClassWithCtorDefaultValuesChild);
 c.a == null;
 c.b == null;
 
+var c = Type.createInstance(ClassWithDynamicFunction,[]);
+c.val == 1;
+c.dynFun() == 2;
+
+var c = Type.createEmptyInstance(ClassWithDynamicFunction);
+c.val == null;
+c.dynFun() == 1;
+
 // createEnum
 var e = Type.createEnum(E, "NoArgs");
 e == NoArgs;

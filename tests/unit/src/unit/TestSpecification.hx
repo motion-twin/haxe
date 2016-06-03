@@ -77,6 +77,18 @@ private class ClassWithToStringChild2 extends ClassWithToString {
 	}
 }
 
+@:keep private class ClassWithDynamicFunction {
+	public var val : Null<Int> = 1;
+	
+	public function new(){
+		this.dynFun = function() return 2;
+	}
+	
+	public dynamic function dynFun(){
+		return 1;
+	}
+}
+
 private class ClassWithCtorDefaultValuesChild extends ClassWithCtorDefaultValues {
 
 }
