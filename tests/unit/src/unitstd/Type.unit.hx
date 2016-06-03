@@ -78,7 +78,9 @@ c.dynFun() == 2;
 
 var c = Type.createEmptyInstance(ClassWithDynamicFunction);
 c.val == null;
+#if !(cs || java || as3)
 c.dynFun() == 1;
+#end
 
 // createEnum
 var e = Type.createEnum(E, "NoArgs");
