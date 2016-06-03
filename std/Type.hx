@@ -151,6 +151,9 @@ extern class Type {
 		Creates an instance of class `cl`.
 
 		This function guarantees that the class constructor is not called.
+		
+		If the class `cl` contains dynamic methods, their initialization is 
+		not guaranteed.
 
 		If `cl` is null, the result is unspecified.
 	**/

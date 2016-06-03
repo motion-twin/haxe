@@ -77,8 +77,12 @@ c.val == 1;
 c.dynFun() == 2;
 
 var c = Type.createEmptyInstance(ClassWithDynamicFunction);
+#if as3
+c.val == 1;
+#else
 c.val == null;
-#if !(cs || java || as3)
+#end
+#if !(cs || java || as3 || hl)
 c.dynFun() == 1;
 #end
 
